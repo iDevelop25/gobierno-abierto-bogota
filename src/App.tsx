@@ -18,6 +18,7 @@ function App() {
 		null
 	)
 	const [showAgendas, setShowAgendas] = useState(false)
+	const [activeMenu, setActiveMenu] = useState("transparencia")
 
 	// Efecto para el scroll y sticky search
 	useEffect(() => {
@@ -28,6 +29,21 @@ function App() {
 
 		window.addEventListener("scroll", handleScroll)
 		return () => window.removeEventListener("scroll", handleScroll)
+	}, [])
+
+	useEffect(() => {
+		const path = window.location.pathname.toLowerCase()
+		if (path === "/" || path.includes("transparencia")) {
+			setActiveMenu("transparencia")
+		} else if (path.includes("sobre")) {
+			setActiveMenu("sobre")
+		} else if (path.includes("participacion")) {
+			setActiveMenu("participacion")
+		} else if (path.includes("colaboracion")) {
+			setActiveMenu("colaboracion")
+		} else if (path.includes("supercade")) {
+			setActiveMenu("supercade")
+		}
 	}, [])
 
 	// Datos de las cards informativas
@@ -202,19 +218,69 @@ function App() {
 						<img src="/images/logo_header.svg" alt="Logo GAB" />
 					</div>
 					<nav className="main-nav">
-						<a href="#" className="nav-item">
+						<a
+							href="/sobre"
+							className={`nav-item ${activeMenu === "sobre" ? "active" : ""}`}
+							onClick={(e) => {
+								e.preventDefault()
+								setActiveMenu("sobre")
+								// Aquí rediriges manualmente o actualizas el contenido
+								window.history.pushState(null, "", "/sobre")
+							}}
+						>
 							Sobre GAB
 						</a>
-						<a href="#" className="nav-item">
+						<a
+							href="/transparencia"
+							className={`nav-item ${
+								activeMenu === "transparencia" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								setActiveMenu("transparencia")
+								// Reinicia vistas si es necesario
+								window.history.pushState(null, "", "/transparencia")
+							}}
+						>
 							Transparencia
 						</a>
-						<a href="#" className="nav-item">
+						<a
+							href="/participacion"
+							className={`nav-item ${
+								activeMenu === "participacion" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								setActiveMenu("participacion")
+								window.history.pushState(null, "", "/participacion")
+							}}
+						>
 							Participación
 						</a>
-						<a href="#" className="nav-item">
+						<a
+							href="/colaboracion"
+							className={`nav-item ${
+								activeMenu === "colaboracion" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								setActiveMenu("colaboracion")
+								window.history.pushState(null, "", "/colaboracion")
+							}}
+						>
 							Colaboración
 						</a>
-						<a href="#" className="nav-item special">
+						<a
+							href="/supercade"
+							className={`nav-item special ${
+								activeMenu === "supercade" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								setActiveMenu("supercade")
+								window.history.pushState(null, "", "/supercade")
+							}}
+						>
 							SuperCADE Virtual
 						</a>
 					</nav>

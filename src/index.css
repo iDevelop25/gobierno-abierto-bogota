@@ -422,6 +422,15 @@ body {
 	width: 80%;
 }
 
+.nav-item.active {
+	color: var(--red-primary);
+	font-weight: bold;
+}
+
+.nav-item.active::after {
+	width: 80%;
+}
+
 /* Botón especial para SuperCADE */
 .nav-item.special {
 	background: var(--blue-primary);
