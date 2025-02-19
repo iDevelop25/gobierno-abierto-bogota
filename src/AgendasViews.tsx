@@ -1,6 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import {
-	Bell,
 	ChevronLeft,
 	Share2,
 	Facebook,
@@ -20,6 +19,12 @@ interface AgendasViewProps {
 
 const AgendasView: React.FC<AgendasViewProps> = ({ onBack }) => {
 	const [showCopiedMessage, setShowCopiedMessage] = useState(false)
+	const [activeMenu, setActiveMenu] = useState("")
+
+	useEffect(() => {
+		// Inicializar sin menú activo
+		setActiveMenu("")
+	}, [])
 
 	const handleShare = (
 		platform: "facebook" | "twitter" | "linkedin" | "copy"
@@ -82,13 +87,85 @@ const AgendasView: React.FC<AgendasViewProps> = ({ onBack }) => {
 
 	return (
 		<div className="min-h-screen flex flex-col">
-			{/* Header */}
+			{/* Header con logo gov.co */}
 			<div className="top-bar">
 				<div className="top-bar-content">
-					<Bell size={16} />
-					<span>Nueva actualización de servicios disponible</span>
+					<img
+						src="/images/go-co.png"
+						alt="Logo GOV.CO"
+						className="gov-co-logo"
+					/>
 				</div>
 			</div>
+
+			{/* Header Principal con Navegación */}
+			<header className="main-header">
+				<div className="header-content">
+					<div className="header-logo">
+						<img src="/images/logo_header.svg" alt="Logo GAB" />
+					</div>
+					<nav className="main-nav">
+						<a
+							href="/sobre"
+							className={`nav-item ${activeMenu === "sobre" ? "active" : ""}`}
+							onClick={(e) => {
+								e.preventDefault()
+								window.location.href = "/sobre"
+							}}
+						>
+							Sobre GAB
+						</a>
+						<a
+							href="/"
+							className={`nav-item ${
+								activeMenu === "transparencia" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								window.location.href = "/"
+							}}
+						>
+							Transparencia
+						</a>
+						<a
+							href="/participacion"
+							className={`nav-item ${
+								activeMenu === "participacion" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								window.location.href = "/participacion"
+							}}
+						>
+							Participación
+						</a>
+						<a
+							href="/colaboracion"
+							className={`nav-item ${
+								activeMenu === "colaboracion" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								window.location.href = "/colaboracion"
+							}}
+						>
+							Colaboración
+						</a>
+						<a
+							href="/supercade"
+							className={`nav-item special ${
+								activeMenu === "supercade" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								window.location.href = "/supercade"
+							}}
+						>
+							SuperCADE Virtual
+						</a>
+					</nav>
+				</div>
+			</header>
 
 			{/* Hero section */}
 			<div className="agendas-hero">

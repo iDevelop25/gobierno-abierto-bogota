@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import {
 	Star,
 	ChevronLeft,
@@ -21,6 +21,12 @@ const CategoryDetail: React.FC<CategoryDetailProps> = ({
 	const [rating, setRating] = useState(0)
 	const [hover, setHover] = useState(0)
 	const [showCopiedMessage, setShowCopiedMessage] = useState(false)
+	const [activeMenu, setActiveMenu] = useState("")
+
+	useEffect(() => {
+		// No establecemos ningún ítem activo al iniciar
+		setActiveMenu("")
+	}, [])
 
 	const handleShare = (platform: SharePlatform) => {
 		const url = window.location.href
@@ -61,6 +67,79 @@ const CategoryDetail: React.FC<CategoryDetailProps> = ({
 				</div>
 			</div>
 
+			{/* Header Principal con Navegación */}
+			<header className="main-header">
+				<div className="header-content">
+					<div className="header-logo">
+						<img src="/images/logo_header.svg" alt="Logo GAB" />
+					</div>
+					<nav className="main-nav">
+						<a
+							href="/sobre"
+							className={`nav-item ${activeMenu === "sobre" ? "active" : ""}`}
+							onClick={(e) => {
+								e.preventDefault()
+								window.location.href = "/sobre"
+							}}
+						>
+							Sobre GAB
+						</a>
+						<a
+							href="/transparencia"
+							className={`nav-item ${
+								activeMenu === "transparencia" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								const baseUrl = window.location.origin
+								window.location.href = `${baseUrl}/`
+							}}
+						>
+							Transparencia
+						</a>
+						<a
+							href="/participacion"
+							className={`nav-item ${
+								activeMenu === "participacion" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								const baseUrl = window.location.origin
+								window.location.href = `${baseUrl}/participacion`
+							}}
+						>
+							Participación
+						</a>
+						<a
+							href="/colaboracion"
+							className={`nav-item ${
+								activeMenu === "colaboracion" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								const baseUrl = window.location.origin
+								window.location.href = `${baseUrl}/colaboracion`
+							}}
+						>
+							Colaboración
+						</a>
+						<a
+							href="/supercade"
+							className={`nav-item special ${
+								activeMenu === "supercade" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								const baseUrl = window.location.origin
+								window.location.href = `${baseUrl}/supercade`
+							}}
+						>
+							SuperCADE Virtual
+						</a>
+					</nav>
+				</div>
+			</header>
+
 			{/* Hero section con gradiente */}
 			<div className="category-detail-hero">
 				<div className="max-w-7xl mx-auto px-4">
@@ -82,7 +161,7 @@ const CategoryDetail: React.FC<CategoryDetailProps> = ({
 						<iframe
 							title="Power BI Dashboard"
 							className="dashboard-iframe"
-							src="https://app.powerbi.com/view?r=eyJrIjoiYzI5NzNmZGYtOGQ1NC00N2I0LWJlMTgtYzIzM2MzZmQ5YmMxIiwidCI6ImYzNTFhN2NiLWY5NGEtNGRmMC05NjI3LWFlMDMwY2NlZjdjNCIsImMiOjR9" // Aquí irá la URL de tu tablero Power BI
+							src="https://app.powerbi.com/view?r=eyJrIjoiYzI5NzNmZGYtOGQ1NC00N2I0LWJlMTgtYzIzM2MzZmQ5YmMxIiwidCI6ImYzNTFhN2NiLWY5NGEtNGRmMC05NjI3LWFlMDMwY2NlZjdjNCIsImMiOjR9"
 							allowFullScreen
 						/>
 					</div>
