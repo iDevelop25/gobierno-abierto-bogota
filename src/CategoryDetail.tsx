@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import {
 	Star,
-	Bell,
 	ChevronLeft,
 	Share2,
 	Facebook,
