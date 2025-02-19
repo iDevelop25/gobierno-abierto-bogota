@@ -79,8 +79,7 @@ const CategoryDetail: React.FC<CategoryDetailProps> = ({
 							className={`nav-item ${activeMenu === "sobre" ? "active" : ""}`}
 							onClick={(e) => {
 								e.preventDefault()
-								const baseUrl = window.location.origin
-								window.location.href = `${baseUrl}/sobre`
+								window.location.href = "/sobre"
 							}}
 						>
 							Sobre GAB

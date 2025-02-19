@@ -6,6 +6,7 @@ import { Category } from "./types"
 import ExportPDF from "./ExportPDF"
 import AgendasView from "./AgendasViews"
 import HeroSlider from "./HeroSlider"
+import SobreGAB from "./SobreGAB"
 
 function App() {
 	const [sliderPosition1, setSliderPosition1] = useState(0)
@@ -19,6 +20,7 @@ function App() {
 	)
 	const [showAgendas, setShowAgendas] = useState(false)
 	const [activeMenu, setActiveMenu] = useState("transparencia")
+	const [currentView, setCurrentView] = useState<string>("home")
 
 	// Efecto para el scroll y sticky search
 	useEffect(() => {
@@ -34,14 +36,19 @@ function App() {
 	useEffect(() => {
 		const path = window.location.pathname.toLowerCase()
 		if (path === "/" || path.includes("transparencia")) {
+			setCurrentView("home")
 			setActiveMenu("transparencia")
 		} else if (path.includes("sobre")) {
+			setCurrentView("sobre")
 			setActiveMenu("sobre")
 		} else if (path.includes("participacion")) {
+			setCurrentView("participacion")
 			setActiveMenu("participacion")
 		} else if (path.includes("colaboracion")) {
+			setCurrentView("colaboracion")
 			setActiveMenu("colaboracion")
 		} else if (path.includes("supercade")) {
+			setCurrentView("supercade")
 			setActiveMenu("supercade")
 		}
 	}, [])
@@ -198,6 +205,11 @@ function App() {
 		return <AgendasView onBack={() => setShowAgendas(false)} />
 	}
 
+	// Si se está mostrando la vista de Sobre GAB
+	if (currentView === "sobre") {
+		return <SobreGAB />
+	}
+
 	return (
 		<div className="app-container">
 			{/* Header con logo gov.co */}
@@ -223,8 +235,8 @@ function App() {
 							className={`nav-item ${activeMenu === "sobre" ? "active" : ""}`}
 							onClick={(e) => {
 								e.preventDefault()
+								setCurrentView("sobre")
 								setActiveMenu("sobre")
-								// Aquí rediriges manualmente o actualizas el contenido
 								window.history.pushState(null, "", "/sobre")
 							}}
 						>
