@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { ChevronRight } from "lucide-react"
 import ExportPDF from "./ExportPDF"
 
