@@ -51,11 +51,14 @@ const CategoryDetail: React.FC<CategoryDetailProps> = ({
 
 	return (
 		<div className="min-h-screen flex flex-col">
-			{/* Header simplificado */}
+			{/* Header con logo gov.co */}
 			<div className="top-bar">
 				<div className="top-bar-content">
-					<Bell size={16} />
-					<span>Nueva actualización de servicios disponible</span>
+					<img
+						src="/images/go-co.png"
+						alt="Logo GOV.CO"
+						className="gov-co-logo"
+					/>
 				</div>
 			</div>
 
@@ -80,7 +83,7 @@ const CategoryDetail: React.FC<CategoryDetailProps> = ({
 						<iframe
 							title="Power BI Dashboard"
 							className="dashboard-iframe"
-							src="about:blank" // Aquí irá la URL de tu tablero Power BI
+							src="https://app.powerbi.com/view?r=eyJrIjoiYzI5NzNmZGYtOGQ1NC00N2I0LWJlMTgtYzIzM2MzZmQ5YmMxIiwidCI6ImYzNTFhN2NiLWY5NGEtNGRmMC05NjI3LWFlMDMwY2NlZjdjNCIsImMiOjR9" // Aquí irá la URL de tu tablero Power BI
 							allowFullScreen
 						/>
 					</div>
