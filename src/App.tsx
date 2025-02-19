@@ -18,6 +18,7 @@ function App() {
 		null
 	)
 	const [showAgendas, setShowAgendas] = useState(false)
+	const [activeMenu, setActiveMenu] = useState("transparencia")
 
 	// Efecto para el scroll y sticky search
 	useEffect(() => {
@@ -202,19 +203,63 @@ function App() {
 						<img src="/images/logo_header.svg" alt="Logo GAB" />
 					</div>
 					<nav className="main-nav">
-						<a href="#" className="nav-item">
+						<a
+							href="#"
+							className={`nav-item ${activeMenu === "sobre" ? "active" : ""}`}
+							onClick={(e) => {
+								e.preventDefault()
+								setActiveMenu("sobre")
+								// Aquí podrías resetear otras vistas si es necesario
+							}}
+						>
 							Sobre GAB
 						</a>
-						<a href="#" className="nav-item">
+						<a
+							href="#"
+							className={`nav-item ${
+								activeMenu === "transparencia" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								setActiveMenu("transparencia")
+								setSelectedCategory(null)
+								setShowAgendas(false)
+							}}
+						>
 							Transparencia
 						</a>
-						<a href="#" className="nav-item">
+						<a
+							href="#"
+							className={`nav-item ${
+								activeMenu === "participacion" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								setActiveMenu("participacion")
+							}}
+						>
 							Participación
 						</a>
-						<a href="#" className="nav-item">
+						<a
+							href="#"
+							className={`nav-item ${
+								activeMenu === "colaboracion" ? "active" : ""
+							}`}
+							onClick={(e) => {
+								e.preventDefault()
+								setActiveMenu("colaboracion")
+							}}
+						>
 							Colaboración
 						</a>
-						<a href="#" className="nav-item special">
+						<a
+							href="#"
+							className="nav-item special"
+							onClick={(e) => {
+								e.preventDefault()
+								setActiveMenu("supercade")
+							}}
+						>
 							SuperCADE Virtual
 						</a>
 					</nav>
